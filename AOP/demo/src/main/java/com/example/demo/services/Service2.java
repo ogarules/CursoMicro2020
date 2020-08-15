@@ -23,11 +23,11 @@ public class Service2 {
         return result;
     }
 
-    public String getPerson(Person param){
+    public Person getPerson(Person param){
         String result = param.getName() + " " + param.getLastName(); 
         LOGGER.info("Inside Service 2");
 
-        return result;
+        return param;
     }
 
     public void getPerson2(Person param){

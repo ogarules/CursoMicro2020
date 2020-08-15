@@ -26,11 +26,8 @@ public class AspectTests {
         person.setName("OSCAR");
         person.setLastName("GARCIA");
 
-        String result = service2.getPerson(person);
-        LOGGER.info(result);
+        Person result = service2.getPerson(person);
+        LOGGER.info(result.getAge().toString());
         service2.getPerson2(person);
-        
-        //LOGGER.info(service1.getSomething());
-        //LOGGER.info(service2.getSomething("Hola"));
     }
 }
