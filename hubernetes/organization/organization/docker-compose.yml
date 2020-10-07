@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  organization:
+    image: organization
+    build: .
+    ports:
+      - 8080:8080

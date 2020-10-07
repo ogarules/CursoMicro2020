@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  employee:
+    image: employee
+    build: .
+    ports:
+      - 8080
