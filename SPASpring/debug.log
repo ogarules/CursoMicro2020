@@ -1,0 +1,7 @@
+[1010/112342.591:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1010/113342.593:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1010/113342.594:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\OGARCIA\AppData\Local\Temp\.profile\Crashpad\reports\729f52c5-3b45-4936-b441-5a47ff92d4d2.dmp: The system cannot find the file specified. (0x2)
+[1010/113342.594:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1010/120846.189:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1010/132049.247:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1010/142513.884:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
