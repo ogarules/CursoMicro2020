@@ -1,1 +1,50 @@
-<p>book works!</p>
+<div style="width: 100%; text-align: center;">
+    <h1>
+        Libro
+    </h1>
+
+    <form #bookForm="ngForm" novalidate>
+        <div>
+            <mat-form-field>
+                <mat-label>Titulo</mat-label>
+                <input type="text" matInput [(ngModel)]="book.title" #bookTitle="ngModel" name="bookTitle" maxlength="50" required>
+                <mat-error *ngIf="bookTitle.errors?.required">El titulo es requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Número de Páginas</mat-label>
+                <input type="number" matInput [(ngModel)]="book.pages" #bookPages="ngModel" name="bookPages" maxlength="50" required>
+                <mat-error *ngIf="bookPages.errors?.required">El número de páginas es requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Edición</mat-label>
+                <input type="text" matInput [(ngModel)]="book.edition" #bookEdition="ngModel" name="bookEdition" maxlength="50" required>
+                <mat-error *ngIf="bookEdition.errors?.required">La edición es requerida</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Genero</mat-label>
+                <input type="text" matInput [(ngModel)]="book.type" #bookType="ngModel" name="bookType" maxlength="50" required>
+                <mat-error *ngIf="bookType.errors?.required">El genero del libro es requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Fecha de publicación</mat-label>
+                <input matInput [(ngModel)]="book.publishDate" #bookDate="ngModel" name="bookDate" [matDatepicker]="picker2" required>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error *ngIf="bookDate.errors?.required">La fecha de publicación es requerida</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-raised-button color="primary" routerLink="../" style="margin-right: 20px;">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="save()" [disabled]="!bookForm.valid">Guardar</button>
+        </div>
+    </form>
+</div>

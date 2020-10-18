@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EditorialService } from '../editorial.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-editorials-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorialsListComponent implements OnInit {
 
-  constructor() { }
+  editorialList : any[] = [];
+  constructor(private editorialService : EditorialService, private notificationService : NotificationService) { }
 
   ngOnInit(): void {
+
+    this.editorialService.getAllEditorials().subscribe((data) =>{
+      this.editorialList = data;
+    }, error =>{
+      this.notificationService.showError(error);
+    });
   }
 
 }

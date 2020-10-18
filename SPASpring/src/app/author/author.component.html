@@ -1,1 +1,43 @@
-<p>author works!</p>
+<div style="width: 100%; text-align: center;">
+    <h1>
+        Autor
+    </h1>
+
+    <form #authorForm="ngForm" novalidate>
+        <div>
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput [(ngModel)]="author.name" #authorName="ngModel" name="authorName" maxlength="50" required>
+                <mat-error *ngIf="authorName.errors?.required">El nombre es requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Apellido Paterno</mat-label>
+                <input type="text" matInput [(ngModel)]="author.lastName" #authorLastName="ngModel" name="authorLastName" maxlength="50" required>
+                <mat-error *ngIf="authorLastName.errors?.required">El apellido paterno es requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Apellido Materno</mat-label>
+                <input type="text" matInput [(ngModel)]="author.familyName" #authorFamilyName="ngModel" name="authorFamilyName" maxlength="50" required>
+                <mat-error *ngIf="authorFamilyName.errors?.required">El apellido materno es requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Fecha nacimiento</mat-label>
+                <input matInput [(ngModel)]="author.dob" #authorDob="ngModel" name="authorDob" [matDatepicker]="picker2" required>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error *ngIf="authorDob.errors?.required">La fecha de nacimiento es requerida</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-raised-button color="primary" routerLink="/authors-list" style="margin-right: 20px;">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="save()" [disabled]="!authorForm.valid">Guardar</button>
+        </div>
+    </form>
+</div>

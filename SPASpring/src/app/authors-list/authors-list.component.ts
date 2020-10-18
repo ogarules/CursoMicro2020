@@ -20,12 +20,4 @@ export class AuthorsListComponent implements OnInit {
       this.notificationService.showError(error);
     });
   }
-
-  editAuthor(author){
-
-  }
-
-  addAuthor(){
-    
-  }
 }

@@ -1,10 +1,12 @@
 package com.example.demo.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.models.Editorial;
 import com.example.demo.repositories.EditorialRepository;
+import com.example.demo.to.EditorialTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,26 +23,31 @@ public class EditorialController {
     EditorialRepository repository;
 
     @GetMapping("/editorial")
-    public List<Editorial> getAllAuthors() {
-        return this.repository.findAll();
+    public List<EditorialTO> getAllAuthors() {
+        return this.repository.findAll().stream()
+                                        .map(r -> new EditorialTO(r.getId(), r.getName(), r.getAddress()))
+                                        .collect(Collectors.toList());
     }
     
     @GetMapping("/editorial/{id}")
-    public Editorial getAuthor(@PathVariable Integer id) throws ResourceNotFoundException {
-        return this.repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No existe la editorial weee"));
+    public EditorialTO getAuthor(@PathVariable Integer id) throws ResourceNotFoundException {
+        Editorial editorialSaved = this.repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No existe la editorial weee"));
+        return new EditorialTO(editorialSaved.getId(), editorialSaved.getName(), editorialSaved.getAddress());
     }
     
     @PostMapping("/editorial")
-    public Editorial addAuthor(@RequestBody Editorial entity) {
-        return this.repository.save(entity);
+    public EditorialTO addAuthor(@RequestBody Editorial entity) {
+        Editorial editorialSaved = this.repository.save(entity);
+        return new EditorialTO(editorialSaved.getId(), editorialSaved.getName(), editorialSaved.getAddress());
     }
     
     @PutMapping("/editorial/{id}")
-    public Editorial updateAuthor(@PathVariable Integer id, @RequestBody Editorial editorial) throws ResourceNotFoundException {
+    public EditorialTO updateAuthor(@PathVariable Integer id, @RequestBody Editorial editorial) throws ResourceNotFoundException {
         Editorial editorialBd = this.repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No existe la editorial weee"));
         editorialBd.setAddress(editorial.getAddress());
         editorialBd.setName(editorial.getName());
 
-        return this.repository.save(editorialBd);
+        Editorial editorialSaved = this.repository.save(editorialBd);
+        return new EditorialTO(editorialSaved.getId(), editorialSaved.getName(), editorialSaved.getAddress());
     }
 }

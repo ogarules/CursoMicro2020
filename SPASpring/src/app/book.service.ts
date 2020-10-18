@@ -25,7 +25,7 @@ export class BookService {
   }
 
   updateBookFromAuthor(authorId, book) : any {
-    return this.httpClient.put<any>(`${environment.apiUrl}/author/${authorId}/book`, book);
+    return this.httpClient.put<any>(`${environment.apiUrl}/author/${authorId}/book/${book.id}`, book);
   }
 
   getAllBooksFromEditorial(editorialId){
@@ -41,6 +41,10 @@ export class BookService {
   }
 
   updateBookFromEditorial(editorialId, book){
-    return this.httpClient.put<any>(`${environment.apiUrl}/editorial/${editorialId}/book`, book);
+    return this.httpClient.put<any>(`${environment.apiUrl}/editorial/${editorialId}/book/${book.id}`, book);
+  }
+
+  filterBooks(filter) {
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/book` + filter);
   }
 }

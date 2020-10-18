@@ -23,6 +23,6 @@ export class AuthorService {
   }
 
   updateAuthor(author){
-    return this.httpClient.put<any>(`${environment.apiUrl}/author`, author);
+    return this.httpClient.put<any>(`${environment.apiUrl}/author/${author.id}`, author);
   }
 }

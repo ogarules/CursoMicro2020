@@ -23,6 +23,6 @@ export class EditorialService {
   }
 
   updateditorial(author){
-    return this.httpClient.put<any>(`${environment.apiUrl}/editorial`, author);
+    return this.httpClient.put<any>(`${environment.apiUrl}/editorial/${author.id}`, author);
   }
 }

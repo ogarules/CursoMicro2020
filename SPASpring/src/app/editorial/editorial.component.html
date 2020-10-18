@@ -1,1 +1,27 @@
-<p>editorial works!</p>
+<div style="width: 100%; text-align: center;">
+    <h1>
+        Editorial
+    </h1>
+
+    <form #editorialForm="ngForm" novalidate>
+        <div>
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput [(ngModel)]="editorial.name" #editorialName="ngModel" name="editorialName" maxlength="50" required>
+                <mat-error *ngIf="editorialName.errors?.required">El nombre es requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Dirección</mat-label>
+                <input type="text" matInput [(ngModel)]="editorial.address" #editorialAddress="ngModel" name="editorialAddress" maxlength="50" required>
+                <mat-error *ngIf="editorialAddress.errors?.required">La dirección es requerida</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-raised-button color="primary" routerLink="/editorials-list" style="margin-right: 20px;">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="save()" [disabled]="!editorialForm.valid">Guardar</button>
+        </div>
+    </form>
+</div>

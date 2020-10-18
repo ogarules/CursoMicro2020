@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Seleccionar Libro</h1>
+<div mat-dialog-content>
+    <div>
+        <mat-form-field (click)="$event.stopPropagation()">
+            <mat-label>Buscar</mat-label>
+            <input type="text" matInput (keydown.enter)="filter()" [(ngModel)]="textFilter" name="textFilter" #searchInput maxlength="50" required>
+            <button mat-icon-button matSuffix (click)="filter()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="bookList" class="mat-elevation-z8" style="width: 100%; margin: 20px;">
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Titulo </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element" style="text-align: left;">
+                <button mat-icon-button (click)="selectBook(element)" title="Seleccionar libro"><mat-icon>note_add</mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['title', 'Actions']"></tr>
+        <tr mat-row *matRowDef="let row; columns:['title', 'Actions'];"></tr>
+    </table>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancelDialog()">Cancelar</button>
+</div>
