@@ -6,13 +6,13 @@
                     <h2>Libros SPA</h2>
                 </div>
                 <div>
-                    <button mat-menu-item routerLink="/authors-list" style="width: 100%; border-style: none;text-align: left;">
+                    <button *ngIf="isAuthenticated" mat-menu-item routerLink="/authors-list" style="width: 100%; border-style: none;text-align: left;">
                       <mat-icon>accessibility</mat-icon>
                       <span style="margin-left: 10px;"> Autores</span>
                     </button>
                 </div>
                 <div>
-                    <button mat-menu-item routerLink="/editorials-list" style="width: 100%; border-style: none; text-align: left;">
+                    <button *ngIf="isAuthenticated" mat-menu-item routerLink="/editorials-list" style="width: 100%; border-style: none; text-align: left;">
                     <mat-icon>account_balance</mat-icon>
                     <span style="margin-left: 10px;">Editoriales</span>
                   </button>
@@ -22,10 +22,15 @@
         <mat-sidenav-content>
             <mat-toolbar>
                 <mat-toolbar-row>
-                    <button mat-icon-button (click)="sidenav.toggle()">
+                    <button *ngIf="isAuthenticated" mat-icon-button (click)="sidenav.toggle()">
                       <mat-icon>menu</mat-icon>
                     </button>
                     <span><h1>&nbsp;&nbsp; Libros SPA</h1></span>
+                    <div style="width: 100%; text-align: right;">
+                        <button *ngIf="!isAuthenticated" (click)="authService.loginRedirect()">Log In</button>
+                        <button *ngIf="isAuthenticated" (click)="authService.logout()">Log Out</button>
+                    </div>
+
                 </mat-toolbar-row>
             </mat-toolbar>
             <router-outlet>

@@ -6,6 +6,8 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookComponent } from './book/book.component';
 import { EditorialComponent } from './editorial/editorial.component';
 import { EditorialsListComponent } from './editorials-list/editorials-list.component';
+import { OktaCallbackComponent } from '@okta/okta-angular'
+
 
 const routes: Routes = [
   {path: 'authors-list', component: AuthorsListComponent},
@@ -17,6 +19,7 @@ const routes: Routes = [
   {path: 'editorial/:id/book', component: BookListComponent, data : {source: 'editorial'}},
   {path: 'editorial/:sourceid/book/:id', component: BookComponent, data : {source: 'editorial'}},
   {path: 'book/:id', component: BookComponent},
+  {path: 'callback', component: OktaCallbackComponent}
 ];
 
 @NgModule({

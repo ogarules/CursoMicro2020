@@ -60,6 +60,11 @@
 			<artifactId>querydsl-jpa</artifactId>
 			<version>4.3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.okta.spring</groupId>
+			<artifactId>okta-spring-boot-starter</artifactId>
+			<version>1.4.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

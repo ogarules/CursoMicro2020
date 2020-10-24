@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,18 @@ import { BookComponent } from './book/book.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { PickBookComponent } from './pick-book/pick-book.component';
 
+import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular'
+import { AuthInterceptor } from './auth.interceptor'
+import { environment } from 'src/environments/environment';
+
+
+const oktaConfig = {
+  issuer: environment.issuer,
+  redirectUri: window.location.origin + '/callback',
+  clientId: environment.clientId,
+  scopes: ['openid', 'profile']
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +51,7 @@ import { PickBookComponent } from './pick-book/pick-book.component';
     PickBookComponent
   ],
   imports: [
+    OktaAuthModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -57,7 +70,10 @@ import { PickBookComponent } from './pick-book/pick-book.component';
     MatNativeDateModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    { provide: OKTA_CONFIG, useValue: oktaConfig },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
