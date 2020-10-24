@@ -4,6 +4,17 @@
     </h1>
 
     <form #authorForm="ngForm" novalidate>
+        <div style="text-align: center;">
+            <span style="width: 100%">
+                <label style="cursor: pointer;">
+                    <span color="primary">
+                        <mat-card>Seleccionar foto</mat-card>
+                        <input type="file" style="display: none;" (change)="onFileSelect($event)">
+                    </span>
+            </label>
+            </span>
+            <img style="max-width: 200px; max-height: 300px;" [src]="pictureUrl">
+        </div>
         <div>
             <mat-form-field>
                 <mat-label>Nombre</mat-label>

@@ -18,11 +18,17 @@ export class AuthorService {
     return this.httpClient.get<any>(`${environment.apiUrl}/author/${id}`);
   }
 
-  addAuthor(author){
+  addAuthor(author){  
     return this.httpClient.post<any>(`${environment.apiUrl}/author`, author);
   }
 
   updateAuthor(author){
     return this.httpClient.put<any>(`${environment.apiUrl}/author/${author.id}`, author);
+  }
+
+  uploadPicture(id, fileData){
+    var formData = new FormData();
+    formData.append('file', fileData);
+    return this.httpClient.post<any>(`${environment.apiUrl}/author/${id}/image`, formData);
   }
 }

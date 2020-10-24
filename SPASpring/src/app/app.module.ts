@@ -17,6 +17,7 @@ import { MatListModule} from '@angular/material/list'
 import { MatButtonModule} from '@angular/material/button'
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatCardModule } from '@angular/material/card'
 
 import { from } from 'rxjs';
 import { EditorialsListComponent } from './editorials-list/editorials-list.component';
@@ -68,7 +69,8 @@ const oktaConfig = {
     HttpClientModule,
     MatButtonModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
   ],
   providers: [
     { provide: OKTA_CONFIG, useValue: oktaConfig },

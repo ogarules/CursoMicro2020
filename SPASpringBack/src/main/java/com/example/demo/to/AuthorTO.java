@@ -16,4 +16,5 @@ public class AuthorTO {
     private String lastName;
     private String familyName;
     private Date dob;    
+    private String picture;
 }
